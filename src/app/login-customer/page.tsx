@@ -10,7 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-export default function LoginCustomerPage() {
+export default function LoginArtisanPage() {
   const { toast } = useToast();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +22,7 @@ export default function LoginCustomerPage() {
     const data = Object.fromEntries(formData);
 
     try {
-      const response = await fetch('/api/login-customer', {
+      const response = await fetch('/api/login-artisan', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -34,7 +34,8 @@ export default function LoginCustomerPage() {
         toast({ variant: "destructive", title: "Login Failed", description: result.message || "Invalid credentials." });
       } else {
         toast({ title: "Login Successful", description: "Redirecting to your dashboard..." });
-        router.push('/dashboard-customer');
+        router.push('/dashboard-artisan');
+        router.refresh(); 
       }
     } catch (error) {
       toast({ variant: "destructive", title: "Login Failed", description: "A network error occurred." });
@@ -47,14 +48,14 @@ export default function LoginCustomerPage() {
     <div className="container mx-auto max-w-sm px-4 py-12 md:px-6">
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold font-headline">Customer Log In</CardTitle>
-          <CardDescription className="text-lg">Access your account.</CardDescription>
+          <CardTitle className="text-3xl font-bold font-headline">Artisan Log In</CardTitle>
+          <CardDescription className="text-lg">Access your dashboard.</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="email">Email Address</Label>
-              <Input id="email" name="email" type="email" placeholder="customer@example.com" required disabled={isLoading} />
+              <Input id="email" name="email" type="email" placeholder="artisan@example.com" required disabled={isLoading} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
@@ -66,9 +67,9 @@ export default function LoginCustomerPage() {
             </Button>
           </form>
           <div className="mt-6 text-center text-sm">
-            Don't have an account?{' '}
-            <Link href="/signup-customer" className="font-medium text-primary hover:underline">
-              Sign up
+            Not an artisan yet?{' '}
+            <Link href="/signup-artisan" className="font-medium text-primary hover:underline">
+              Join us
             </Link>
           </div>
         </CardContent>

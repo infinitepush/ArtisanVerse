@@ -136,5 +136,21 @@
       "prod-img-1758398800047-917",
       "prod-img-1758398800049-662"
     ]
+  },
+  {
+    "id": "prod-1758453172370",
+    "name": "The Artisan's Toolkit of Knowledge | Hand-Drawn Learning Essentials",
+    "artisanId": "art-1758450929862",
+    "categoryId": "new",
+    "price": 36,
+    "rating": 0,
+    "reviewCount": 0,
+    "description": "Crafted with a delicate hand, this digital illustration captures the timeless essence of learning through its minimalist line art. Each iconic tool – from the inquisitive magnifying glass and the open book of wisdom, to the precise geometry of the ruler and compass, and the ever-present eraser for thoughtful revision – is rendered with crisp, elegant strokes. This versatile design offers a clean aesthetic, ready to inspire on any medium you choose, whether gracing a fine art print or adorning a bespoke handcrafted item.\r\n\r\nMy inspiration for this piece sprang from the quiet moments of reflection on the profound journey of education – both as a student and as a lifelong learner. I envisioned a tribute to the dedicated educators and curious minds who shape our world, meticulously sketching each element with the reverence they deserve. It's a reminder that true understanding comes from exploration, measurement, correction, and boundless curiosity, born from a desire to celebrate the enduring beauty found in the pursuit of knowledge.",
+    "story": "Inspired by teaching, this piece is a new addition to my collection.",
+    "imageIds": [
+      "prod-img-1758453172370-574",
+      "prod-img-1758453172370-90",
+      "prod-img-1758453172370-58"
+    ]
   }
 ]

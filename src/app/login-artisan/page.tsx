@@ -1,4 +1,6 @@
 'use client';
+console.log("Loader2:", Loader2); // Make sure `Loader2` is available
+console.log("CardDescription:", CardDescription); // Keep this for logging if needed
 
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,8 +9,10 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useToast } from '@/hooks/use-toast';
-import { Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react'; // Ensure this is correctly imported
 import { useRouter } from 'next/navigation';
+
+
 
 export default function LoginArtisanPage() {
   const { toast } = useToast();

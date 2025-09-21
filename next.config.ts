@@ -1,5 +1,4 @@
-
-import type {NextConfig} from 'next';
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -9,8 +8,7 @@ const nextConfig: NextConfig = {
   experimental: {
     serverActions: {
       bodySizeLimit: '4.5mb',
-      // Allow more time for AI actions to complete
-      maxDuration: 30,
+      maxDuration: 30, // Allow more time for AI actions to complete
     },
   },
   eslint: {
@@ -37,6 +35,15 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+  },
+  webpack(config) {
+    // Add rule for Handlebars files
+    config.module.rules.push({
+      test: /\.handlebars$/,
+      use: 'handlebars-loader',
+    });
+
+    return config;
   },
 };
 

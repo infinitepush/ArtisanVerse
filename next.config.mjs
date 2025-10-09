@@ -1,6 +1,5 @@
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   /* config options here */
   typescript: {
     ignoreBuildErrors: true,
@@ -14,37 +13,37 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // images: {
-  //   remotePatterns: [
-  //     {
-  //       protocol: 'https',
-  //       hostname: 'placehold.co',
-  //       port: '',
-  //       pathname: '/**',
-  //     },
-  //     {
-  //       protocol: 'https',
-  //       hostname: 'images.unsplash.com',
-  //       port: '',
-  //       pathname: '/**',
-  //     },
-  //     {
-  //       protocol: 'https',
-  //       hostname: 'picsum.photos',
-  //       port: '',
-  //       pathname: '/**',
-  //     },
-  //   ],
-  // },
-  // webpack(config) {
-  //   // Add rule for Handlebars files
-  //   config.module.rules.push({
-  //     test: /\.handlebars$/,
-  //     use: 'handlebars-loader',
-  //   });
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
+  webpack(config) {
+    // Add rule for Handlebars files
+    config.module.rules.push({
+      test: /\.handlebars$/,
+      use: 'handlebars-loader',
+    });
 
-  //   return config;
-  // },
+    return config;
+  },
 };
 
 export default nextConfig;

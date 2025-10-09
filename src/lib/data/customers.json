@@ -12,5 +12,12 @@
     "email": "dayan@gmail.com",
     "password": "$2a$10$nEqo7Kg5P73gTHsO1bVKhOssU2.nvGzQ71.diUsvGUGhXg3blUmbq",
     "role": "customer"
+  },
+  {
+    "id": "user-1759991273594",
+    "name": "rohan",
+    "email": "rohanpanda@gmail.com",
+    "password": "$2a$10$03BknX1rTAOe3TOxRxSJveukfd1.WC5fZU4/9xHB8YUBUi94J/6sW",
+    "role": "customer"
   }
 ]

@@ -10,7 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { User as UserIcon } from 'lucide-react';
+import CustomerDashboardClientPage from './customer-dashboard-client-page';
 
 async function getCustomer(customerId: string): Promise<User | null> {
   const customersPath = path.join(process.cwd(), 'src', 'lib', 'data', 'customers.json');
@@ -103,28 +103,7 @@ export default async function CustomerDashboardPage() {
             </Card>
         </div>
 
-         <div className="space-y-8">
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <UserIcon className="h-5 w-5" />
-                        My Profile
-                    </CardTitle>
-                    <CardDescription>Your personal information.</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <div className="text-sm">
-                        <p className="font-medium text-muted-foreground">Name</p>
-                        <p>{customer.name}</p>
-                    </div>
-                    <div className="text-sm">
-                        <p className="font-medium text-muted-foreground">Email</p>
-                        <p>{customer.email}</p>
-                    </div>
-                     <Button variant="outline" className="w-full">Edit Profile</Button>
-                </CardContent>
-            </Card>
-        </div>
+        <CustomerDashboardClientPage customer={customer} />
       </div>
 
       <div className="mt-16">

@@ -6,7 +6,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { Star, ShoppingCart, Heart } from 'lucide-react';
+import { buyNowAction } from '@/app/marketplace/actions';
 import {
   Carousel,
   CarouselContent,
@@ -77,14 +77,12 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           
           <p className="text-4xl font-bold mt-6">${product.price.toFixed(2)}</p>
 
-          <div className="flex items-center gap-4 mt-8">
-            <Button size="lg" className="flex-grow">
-              <ShoppingCart className="mr-2 h-5 w-5" /> Add to Cart
+          <form action={buyNowAction}>
+            <input type="hidden" name="productId" value={product.id} />
+            <Button size="lg" className="flex-grow w-full mt-8">
+              <ShoppingCart className="mr-2 h-5 w-5" /> Buy Now
             </Button>
-            <Button size="lg" variant="outline">
-              <Heart className="mr-2 h-5 w-5" /> Wishlist
-            </Button>
-          </div>
+          </form>
           
           <Separator className="my-8" />
           

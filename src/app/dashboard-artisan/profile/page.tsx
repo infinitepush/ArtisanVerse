@@ -2,17 +2,25 @@
 import { cookies } from 'next/headers';
 import ProfileClientPage from './profile-client-page';
 import type { Artisan } from '@/lib/types';
-import { artisans } from '@/lib/data';
+import { promises as fs } from 'fs';
+import path from 'path';
 
 async function getArtisan(artisanId: string): Promise<Artisan | null> {
-  // Now we can look up directly from the consolidated data source
-  const artisan = artisans.find(a => a.id === artisanId);
-  return artisan || null;
+  const artisansPath = path.join(process.cwd(), 'src', 'lib', 'data', 'artisans.json');
+  try {
+    const artisansData = await fs.readFile(artisansPath, 'utf-8');
+    const artisans = JSON.parse(artisansData).artisans as Artisan[];
+    const artisan = artisans.find(a => a.id === artisanId);
+    return artisan || null;
+  } catch (error) {
+    console.error('Failed to read or parse artisans.json:', error);
+    return null;
+  }
 }
 
 
 export default async function ProfilePage() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const authSession = cookieStore.get('auth-session');
   
   let artisan: Artisan | null = null;

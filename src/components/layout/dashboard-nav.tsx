@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   SidebarMenu,
   SidebarMenuItem,
@@ -29,11 +29,17 @@ const navItems = [
 
 const bottomNavItems = [
     { href: '/support', label: 'Support', icon: LifeBuoy },
-    { href: '/', label: 'Logout', icon: LogOut },
 ]
 
 export function DashboardNav() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await fetch('/api/logout', { method: 'POST' });
+    router.push('/');
+    router.refresh();
+  };
 
   return (
     <>
@@ -42,7 +48,7 @@ export function DashboardNav() {
         <SidebarMenuItem key={item.href}>
           <SidebarMenuButton
             asChild
-            isActive={pathname.startsWith(item.href) && (item.href !== '/dashboard-artisan' || pathname === '/dashboard-artisan')}
+            isActive={item.href === '/dashboard-artisan' ? pathname === item.href : pathname.startsWith(item.href)}
             tooltip={item.label}
           >
             <Link href={item.href}>
@@ -67,6 +73,12 @@ export function DashboardNav() {
             </SidebarMenuButton>
             </SidebarMenuItem>
         ))}
+        <SidebarMenuItem>
+            <SidebarMenuButton onClick={handleLogout} tooltip="Logout">
+                <LogOut />
+                <span>Logout</span>
+            </SidebarMenuButton>
+        </SidebarMenuItem>
     </SidebarMenu>
     </>
   );

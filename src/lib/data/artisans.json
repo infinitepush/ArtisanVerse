@@ -52,6 +52,13 @@
       "email": "gulab@gmail.com",
       "password": "$2a$10$w.BBkKwe7IO7VkIvNsa3J.0nBYeh2QcpmqOk0M8BaT2mTgl2m4AEy",
       "role": "artisan"
+    },
+    {
+      "id": "art-1759988986381",
+      "name": "Piyush",
+      "email": "Piyush11@gmail.com",
+      "password": "$2a$10$h/9kE8eXvSvYUCGM0DRAG.Q1vmuQ0u3uFsVjXvyx7EctkmHYfczlO",
+      "role": "artisan"
     }
   ]
 }

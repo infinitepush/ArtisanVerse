@@ -1,126 +1,32 @@
-'use client';
+import { cookies } from 'next/headers';
+import { promises as fs } from 'fs';
+import path from 'path';
+import StoryAssistantClientPage from './story-assistant-client-page';
+import type { Artisan } from '@/lib/types';
 
-import { useActionState, useEffect, useState } from 'react';
-import { useFormStatus } from 'react-dom';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { generateStoryAction } from './actions';
-import { Wand, Loader2, RotateCcw } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-
-const initialState = {
-  message: null,
-  errors: null,
-  generatedNarrative: null,
-};
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending} className="w-full">
-      {pending ? (
-        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-      ) : (
-        <Wand className="mr-2 h-4 w-4" />
-      )}
-      Generate Story
-    </Button>
-  );
+async function getArtisanBio(artisanId: string): Promise<string | null> {
+    const artisansPath = path.join(process.cwd(), 'src', 'lib', 'data', 'artisans.json');
+    try {
+        const artisansData = await fs.readFile(artisansPath, 'utf-8');
+        const artisans = JSON.parse(artisansData).artisans as Artisan[];
+        const artisan = artisans.find(a => a.id === artisanId);
+        return artisan?.bio || null;
+    } catch (error) {
+        console.error('Failed to read or parse artisans.json:', error);
+        return null;
+    }
 }
 
-export default function StoryAssistantPage() {
-  const [state, formAction, isPending] = useActionState(generateStoryAction, initialState);
-  const { toast } = useToast();
+export default async function StoryAssistantPage() {
+    const cookieStore = await cookies();
+    const authSession = cookieStore.get('auth-session');
+    let artisanId: string | null = null;
 
-  const [productName, setProductName] = useState('');
-  const [productDescription, setProductDescription] = useState('');
-  const [artisanBackground, setArtisanBackground] = useState('');
-  const [generatedNarrative, setGeneratedNarrative] = useState(initialState.generatedNarrative);
-
-  useEffect(() => {
-    if (state.message) {
-        if (state.generatedNarrative) {
-          setGeneratedNarrative(state.generatedNarrative);
-        } else if (state.message !== 'Narrative generated successfully.') {
-            toast({
-                variant: "destructive",
-                title: "Error",
-                description: state.message,
-            });
-        }
+    if (authSession && authSession.value.startsWith('artisan:')) {
+        artisanId = authSession.value.split(':')[1];
     }
-  }, [state, toast]);
 
-  const handleStartOver = () => {
-    setProductName('');
-    setProductDescription('');
-    setArtisanBackground('');
-    setGeneratedNarrative(null);
-    // Reset action state
-    state.message = null;
-    state.errors = null;
-    state.generatedNarrative = null;
-  };
+    const artisanBio = artisanId ? await getArtisanBio(artisanId) : null;
 
-  return (
-    <div className="p-4 md:p-8">
-       <div className="flex justify-between items-center mb-2">
-        <h1 className="text-3xl font-bold font-headline">AI Storytelling Assistant</h1>
-        <Button variant="outline" onClick={handleStartOver}>
-            <RotateCcw className="mr-2 h-4 w-4" />
-            Start Over
-        </Button>
-      </div>
-      <p className="text-muted-foreground mb-8">Craft compelling narratives for your products.</p>
-      
-      <div className="grid gap-8 lg:grid-cols-2">
-        <Card>
-          <form action={formAction}>
-            <CardHeader>
-              <CardTitle>Product Details</CardTitle>
-              <CardDescription>Provide information about your product and yourself to generate a story.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="productName">Product Name</Label>
-                <Input id="productName" name="productName" placeholder="e.g., Azure Dream Vase" value={productName} onChange={e => setProductName(e.target.value)} />
-                {state.errors?.productName && <p className="text-sm font-medium text-destructive">{state.errors.productName[0]}</p>}
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="productDescription">Product Description</Label>
-                <Textarea id="productDescription" name="productDescription" placeholder="Materials, craftsmanship, unique features..." value={productDescription} onChange={e => setProductDescription(e.target.value)} />
-                {state.errors?.productDescription && <p className="text-sm font-medium text-destructive">{state.errors.productDescription[0]}</p>}
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="artisanBackground">Artisan Background</Label>
-                <Textarea id="artisanBackground" name="artisanBackground" placeholder="Your background, inspiration, techniques..." value={artisanBackground} onChange={e => setArtisanBackground(e.target.value)} />
-                {state.errors?.artisanBackground && <p className="text-sm font-medium text-destructive">{state.errors.artisanBackground[0]}</p>}
-              </div>
-            </CardContent>
-            <CardFooter>
-                <SubmitButton />
-            </CardFooter>
-          </form>
-        </Card>
-
-        <Card className="flex flex-col">
-            <CardHeader>
-                <CardTitle>Generated Narrative</CardTitle>
-                <CardDescription>Your AI-crafted story will appear here.</CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow">
-                <div className="bg-muted rounded-md h-full min-h-[200px] p-4 text-sm whitespace-pre-wrap flex items-center justify-center">
-                    {isPending ? <Loader2 className="h-8 w-8 animate-spin text-primary" /> : (generatedNarrative ? generatedNarrative : "Waiting for input...")}
-                </div>
-            </CardContent>
-            <CardFooter>
-                 <Button variant="outline" className="w-full" disabled={!generatedNarrative}>Copy to Clipboard</Button>
-            </CardFooter>
-        </Card>
-      </div>
-    </div>
-  );
+    return <StoryAssistantClientPage artisanBio={artisanBio} />;
 }

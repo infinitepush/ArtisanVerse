@@ -135,11 +135,11 @@ export default function ProfileClientPage({ artisan }: { artisan: Artisan | null
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <Label htmlFor="artisanName">Full Name</Label>
-                                        <Input id="artisanName" name="artisanName" defaultValue={artisan.name} readOnly disabled />
+                                        <Input id="artisanName" name="artisanName" defaultValue={artisan.name} />
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor="email">Email Address</Label>
-                                        <Input id="email" name="email" defaultValue={artisan.email} readOnly disabled />
+                                        <Input id="email" name="email" defaultValue={artisan.email} />
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

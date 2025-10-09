@@ -152,5 +152,69 @@
       "prod-img-1758453172370-90",
       "prod-img-1758453172370-58"
     ]
+  },
+  {
+    "id": "prod-1759989644049",
+    "name": "The Artisan's Roadmap: Crafting Your Path to Top Tech Placements",
+    "artisanId": "art-1759988986381",
+    "categoryId": "new",
+    "price": 84,
+    "rating": 0,
+    "reviewCount": 0,
+    "description": "Discover a meticulously curated digital study companion, designed with the precision of a master artisan. This comprehensive roadmap unfolds through insightful video modules, presenting complex career pathways with unparalleled clarity. Each lesson is a carefully polished gem of wisdom, offering a crystal-clear view into the hiring landscapes of leading service-based tech companies like TCS, Infosys, Wipro, and Accenture, ensuring every aspiring professional finds their footing with confidence.\r\n\r\nBorn from a deep understanding of industry nuances and a heartfelt desire to empower aspiring talent, this guide is more than just information; it's a legacy of mentorship. Inspired by countless journeys and the shared ambition of those seeking their first significant career step, it was crafted not merely as a course, but as a guiding light—a testament to the belief that every dream deserves a clear, actionable path, built with dedication and an unwavering commitment to your success.",
+    "story": "Inspired by study-tool, this piece is a new addition to my collection.",
+    "imageIds": [
+      "prod-img-1759989644046-950",
+      "prod-img-1759989644049-704",
+      "prod-img-1759989644049-371"
+    ]
+  },
+  {
+    "id": "prod-1759990051438",
+    "name": "The Artisan's Code: Masterful Programming Journeys",
+    "artisanId": "art-1759988986381",
+    "categoryId": "new",
+    "price": 71,
+    "rating": 0,
+    "reviewCount": 0,
+    "description": "Embark on a meticulously crafted educational journey where the art of coding comes to life. Our modules are thoughtfully designed, presenting complex programming concepts in digestible steps, much like a skilled artisan carefully sculpts their masterpiece. You'll delve into engaging tutorials, interactive coding challenges reminiscent of HackerRank, and crystal-clear explanations across languages like Java and JavaScript, all curated to build a robust and intuitive foundation in programming logic.\r\n\r\nThis unique teaching approach was born from a profound passion to demystify the digital realm and empower aspiring developers with genuine skill. Witnessing the 'aha!' moment when a concept clicks, or a student successfully debugs their first intricate line of code, is the driving force behind our dedication. We believe coding is not just about syntax; it's about creative problem-solving and the sheer joy of bringing ideas to fruition, a philosophy we carefully infuse into every lesson we craft.",
+    "story": "Inspired by coding-teaching, this piece is a new addition to my collection.",
+    "imageIds": [
+      "prod-img-1759990051436-728",
+      "prod-img-1759990051436-214",
+      "prod-img-1759990051438-294"
+    ]
+  },
+  {
+    "id": "prod-1759990544024",
+    "name": "The Coder's Compass: Navigating Your Digital Craft with Expert Guidance",
+    "artisanId": "art-1759988986381",
+    "categoryId": "new",
+    "price": 104,
+    "rating": 0,
+    "reviewCount": 0,
+    "description": "Embark on a meticulously crafted learning adventure designed to illuminate the complex world of coding. Our digital offerings are not just tutorials; they are curated pathways, built with clarity and precision, guiding you through fundamental concepts and advanced techniques. Each lesson, presented with engaging visuals and articulate explanations, forms the bedrock of your programming proficiency, turning intricate code into understandable building blocks.\r\n\r\nBorn from a genuine passion for demystifying technology and empowering aspiring developers, this educational journey is the culmination of years of experience and a deep understanding of common learning hurdles. We believe that learning to code is akin to mastering a new craft, requiring patience, dedication, and the right tools. Our inspiration stems from witnessing the transformative power of coding and a desire to share that magic, ensuring every student feels supported and confident in their pursuit of digital excellence.",
+    "story": "Inspired by coding-teaching, this piece is a new addition to my collection.",
+    "imageIds": [
+      "prod-img-1759990544021-615",
+      "prod-img-1759990544022-1",
+      "prod-img-1759990544024-526"
+    ]
+  },
+  {
+    "id": "prod-1759992848570",
+    "name": "The Coder's Milestone Star Tracker",
+    "artisanId": "art-1759988986381",
+    "categoryId": "new",
+    "price": 20,
+    "rating": 0,
+    "reviewCount": 0,
+    "description": "Crafted from select, sustainably sourced walnut, our Coder's Milestone Star Tracker is a testament to the journey of every dedicated developer. Each piece is hand-sanded to a silken finish, revealing the wood's natural grain, and then etched with subtle patterns reminiscent of ancient algorithms and modern circuit pathways. Embedded within its elegant design are polished brass star receptacles, awaiting the luminous acrylic stars earned on your coding quest, making each digital triumph a tangible beacon of progress. It's a striking addition to any workspace, a daily reminder of your dedication and growth.\r\nInspired by the exhilarating rush of finally solving that elusive bug or earning a 'Congratulations!' on a tough coding challenge, we set out to create a way to honor these digital victories in the physical world. This tracker was born from a desire to transform fleeting screen-based accolades into a permanent, inspiring display. It's an artisan's ode to the tireless hours, the creative problem-solving, and the sheer grit that defines the developer's path, offering a beautiful reminder of how far you've come and the stellar achievements yet to unlock.",
+    "story": "Inspired by acheivement-tracker, this piece is a new addition to my collection.",
+    "imageIds": [
+      "prod-img-1759992848568-569",
+      "prod-img-1759992848568-736",
+      "prod-img-1759992848570-290"
+    ]
   }
 ]

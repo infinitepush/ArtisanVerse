@@ -31,8 +31,58 @@ function SubmitButton() {
   );
 }
 
+function FormContent({ state, artisanBio, productName, setProductName, productDescription, setProductDescription, artisanBackground, setArtisanBackground, generatedNarrative, setGeneratedNarrative }) {
+    const { pending } = useFormStatus();
+
+    return (
+        <div className="grid gap-8 lg:grid-cols-2">
+            <Card>
+                <CardHeader>
+                <CardTitle>Product Details</CardTitle>
+                <CardDescription>Provide information about your product and yourself to generate a story.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                <div className="space-y-2">
+                    <Label htmlFor="productName">Product Name</Label>
+                    <Input id="productName" name="productName" placeholder="e.g., Azure Dream Vase" value={productName} onChange={e => setProductName(e.target.value)} />
+                    {state.errors?.productName && <p className="text-sm font-medium text-destructive">{state.errors.productName[0]}</p>}
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="productDescription">Product Description</Label>
+                    <Textarea id="productDescription" name="productDescription" placeholder="Materials, craftsmanship, unique features..." value={productDescription} onChange={e => setProductDescription(e.target.value)} />
+                    {state.errors?.productDescription && <p className="text-sm font-medium text-destructive">{state.errors.productDescription[0]}</p>}
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="artisanBackground">Artisan Background</Label>
+                    <Textarea id="artisanBackground" name="artisanBackground" placeholder="Your background, inspiration, techniques..." value={artisanBackground} onChange={e => setArtisanBackground(e.target.value)} />
+                    {state.errors?.artisanBackground && <p className="text-sm font-medium text-destructive">{state.errors.artisanBackground[0]}</p>}
+                </div>
+                </CardContent>
+                <CardFooter>
+                    <SubmitButton />
+                </CardFooter>
+            </Card>
+
+            <Card className="flex flex-col">
+                <CardHeader>
+                    <CardTitle>Generated Narrative</CardTitle>
+                    <CardDescription>Your AI-crafted story will appear here.</CardDescription>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                    <div className="bg-muted rounded-md h-full min-h-[200px] p-4 text-sm whitespace-pre-wrap flex items-center justify-center">
+                        {pending ? <Loader2 className="h-8 w-8 animate-spin text-primary" /> : (generatedNarrative ? generatedNarrative : "Waiting for input...")}
+                    </div>
+                </CardContent>
+                <CardFooter>
+                    <Button variant="outline" className="w-full" disabled={!generatedNarrative}>Copy to Clipboard</Button>
+                </CardFooter>
+            </Card>
+        </div>
+    )
+}
+
 export default function StoryAssistantClientPage({ artisanBio }: { artisanBio: string | null }) {
-  const [state, formAction, isPending] = useActionState(generateStoryAction, initialState);
+  const [state, formAction] = useActionState(generateStoryAction, initialState);
   const { toast } = useToast();
 
   const [productName, setProductName] = useState('');
@@ -76,51 +126,20 @@ export default function StoryAssistantClientPage({ artisanBio }: { artisanBio: s
       </div>
       <p className="text-muted-foreground mb-8">Craft compelling narratives for your products.</p>
       
-      <div className="grid gap-8 lg:grid-cols-2">
-        <Card>
-          <form action={formAction}>
-            <CardHeader>
-              <CardTitle>Product Details</CardTitle>
-              <CardDescription>Provide information about your product and yourself to generate a story.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="productName">Product Name</Label>
-                <Input id="productName" name="productName" placeholder="e.g., Azure Dream Vase" value={productName} onChange={e => setProductName(e.target.value)} />
-                {state.errors?.productName && <p className="text-sm font-medium text-destructive">{state.errors.productName[0]}</p>}
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="productDescription">Product Description</Label>
-                <Textarea id="productDescription" name="productDescription" placeholder="Materials, craftsmanship, unique features..." value={productDescription} onChange={e => setProductDescription(e.target.value)} />
-                {state.errors?.productDescription && <p className="text-sm font-medium text-destructive">{state.errors.productDescription[0]}</p>}
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="artisanBackground">Artisan Background</Label>
-                <Textarea id="artisanBackground" name="artisanBackground" placeholder="Your background, inspiration, techniques..." value={artisanBackground} onChange={e => setArtisanBackground(e.target.value)} />
-                {state.errors?.artisanBackground && <p className="text-sm font-medium text-destructive">{state.errors.artisanBackground[0]}</p>}
-              </div>
-            </CardContent>
-            <CardFooter>
-                <SubmitButton />
-            </CardFooter>
-          </form>
-        </Card>
-
-        <Card className="flex flex-col">
-            <CardHeader>
-                <CardTitle>Generated Narrative</CardTitle>
-                <CardDescription>Your AI-crafted story will appear here.</CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow">
-                <div className="bg-muted rounded-md h-full min-h-[200px] p-4 text-sm whitespace-pre-wrap flex items-center justify-center">
-                    {isPending ? <Loader2 className="h-8 w-8 animate-spin text-primary" /> : (generatedNarrative ? generatedNarrative : "Waiting for input...")}
-                </div>
-            </CardContent>
-            <CardFooter>
-                 <Button variant="outline" className="w-full" disabled={!generatedNarrative}>Copy to Clipboard</Button>
-            </CardFooter>
-        </Card>
-      </div>
+      <form action={formAction}>
+        <FormContent 
+            state={state}
+            artisanBio={artisanBio}
+            productName={productName}
+            setProductName={setProductName}
+            productDescription={productDescription}
+            setProductDescription={setProductDescription}
+            artisanBackground={artisanBackground}
+            setArtisanBackground={setArtisanBackground}
+            generatedNarrative={generatedNarrative}
+            setGeneratedNarrative={setGeneratedNarrative}
+        />
+      </form>
     </div>
   );
 }

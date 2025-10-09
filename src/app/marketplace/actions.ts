@@ -6,6 +6,7 @@ import path from 'path';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { products as productsData, customerPurchases as customerPurchasesData } from '@/lib/data';
+import type { Product } from '@/lib/types';
 
 const productsJsonPath = path.join(process.cwd(), 'src', 'lib', 'data', 'products.json');
 const customerPurchasesJsonPath = path.join(process.cwd(), 'src', 'lib', 'data', 'customer-purchases.json');
@@ -15,7 +16,7 @@ const buyNowSchema = z.object({
 });
 
 export async function buyNowAction(formData: FormData) {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const authSession = cookieStore.get('auth-session');
   
   if (!authSession || !authSession.value.startsWith('customer:')) {
@@ -83,4 +84,24 @@ export async function buyNowAction(formData: FormData) {
     console.error('Error processing purchase:', error);
     return { message: 'An unexpected error occurred while processing your purchase.' };
   }
+}
+
+export interface SearchState {
+  products: Product[];
+  query: string;
+}
+
+export async function searchAction(prevState: SearchState, formData: FormData): Promise<SearchState> {
+  const query = formData.get('query')?.toString() || '';
+
+  if (!query) {
+    return { products: productsData, query: '' };
+  }
+
+  const filteredProducts = productsData.filter(product =>
+    product.name.toLowerCase().includes(query.toLowerCase()) ||
+    product.description.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return { products: filteredProducts, query };
 }

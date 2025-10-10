@@ -1,5 +1,6 @@
 'use client';
-import { Loader2 } from 'lucide-react'; // Ensure this is correctly imported
+import React from 'react';
+import { Loader2 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -10,19 +11,10 @@ import Link from 'next/link';
 
 function LoginButton() {
   const { pending } = useFormStatus();
-  const [isLoading, setIsLoading] = React.useState(false);
-
-  const handleClick = (event) => {
-    if (pending) {
-      event.preventDefault();
-      return;
-    }
-    setIsLoading(true);
-  };
 
   return (
-    <Button className="w-full" aria-disabled={pending || isLoading} onClick={handleClick}>
-      {(pending || isLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />} 
+    <Button className="w-full" aria-disabled={pending}>
+      {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />} 
       Log in
     </Button>
   );

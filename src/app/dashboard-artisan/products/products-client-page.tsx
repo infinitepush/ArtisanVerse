@@ -13,6 +13,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { MoreHorizontal, PlusCircle } from "lucide-react";
 import type { Product } from "@/lib/types";
+import type { ImagePlaceholder } from "./page"; // Import the type from the page
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -24,9 +25,8 @@ import { useState } from "react";
 import { GeneratePostDialog } from "./generate-post-dialog";
 import Link from "next/link";
 import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-export default function ProductsClientPage({ myProducts }: { myProducts: Product[] }) {
+export default function ProductsClientPage({ myProducts, allImages }: { myProducts: Product[], allImages: ImagePlaceholder[] }) {
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [isDialogOpen, setDialogOpen] = useState(false);
 
@@ -40,6 +40,11 @@ export default function ProductsClientPage({ myProducts }: { myProducts: Product
 
     const handleDelete = (product: Product) => {
         console.log("Deleting product:", product.name);
+    }
+
+    const handleGeneratePost = (product: Product) => {
+        setSelectedProduct(product);
+        setDialogOpen(true);
     }
 
     return (
@@ -78,11 +83,14 @@ export default function ProductsClientPage({ myProducts }: { myProducts: Product
                         </TableHeader>
                         <TableBody>
                             {myProducts.map(product => {
-                                const imageUrl = PlaceHolderImages.find(img => img.id === product.imageIds[0])?.imageUrl;
+                                const imageUrl = allImages.find(img => img.id === product.imageIds[0])?.imageUrl;
                                 return (
                                 <TableRow key={product.id}>
                                     <TableCell className="hidden sm:table-cell">
-                                        {imageUrl && <Image src={imageUrl} alt={product.name} width={48} height={48} className="rounded-md" />}
+                                        {imageUrl ? 
+                                            <Image src={imageUrl} alt={product.name} width={48} height={48} className="rounded-md object-cover" /> : 
+                                            <div className="w-12 h-12 bg-muted rounded-md" /> // Placeholder
+                                        }
                                     </TableCell>
                                     <TableCell className="font-medium">{product.name}</TableCell>
                                     <TableCell><Badge>Active</Badge></TableCell>
@@ -120,6 +128,7 @@ export default function ProductsClientPage({ myProducts }: { myProducts: Product
                 product={selectedProduct}
                 isOpen={isDialogOpen}
                 onOpenChange={setDialogOpen}
+                allImages={allImages}
             />
         )}
         </>

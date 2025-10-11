@@ -59,6 +59,13 @@
       "email": "Piyush11@gmail.com",
       "password": "$2a$10$h/9kE8eXvSvYUCGM0DRAG.Q1vmuQ0u3uFsVjXvyx7EctkmHYfczlO",
       "role": "artisan"
+    },
+    {
+      "id": "art-1760163862536",
+      "name": "lipika",
+      "email": "lipika@gmail.com",
+      "password": "$2a$10$YQNFVzqSr1VCAouqXEiQBe16WBsMTe5LDZkO.FX8Nmy8ulBsTFN2O",
+      "role": "artisan"
     }
   ]
 }

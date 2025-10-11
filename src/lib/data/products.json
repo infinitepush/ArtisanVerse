@@ -216,5 +216,21 @@
       "prod-img-1759992848568-736",
       "prod-img-1759992848570-290"
     ]
+  },
+  {
+    "id": "prod-1760163944686",
+    "name": "Earthen Embrace Handcrafted Terracotta Water Carafe & Tumblers",
+    "artisanId": "art-1760163862536",
+    "categoryId": "new",
+    "price": 92,
+    "rating": 0,
+    "reviewCount": 0,
+    "description": "Discover the timeless elegance of our Earthen Embrace Water Carafe and Tumbler Set, meticulously handcrafted from natural, clayey pottery. Each piece boasts a warm, inviting terracotta hue and a beautifully smooth, tactile finish that connects you directly to the earth. The gracefully curved carafe, often accompanied by a matching lid, is designed not just for aesthetics but also to naturally cool your water, while the accompanying tumblers offer a comfortable, rustic grip for a truly refreshing experience.\r\n\r\nThis collection springs from a deep reverence for ancient craft and sustainable living. Inspired by generations of artisans who transformed simple earth into vessels of life, our pottery is a testament to the quiet beauty found in traditional methods. Every curve and contour tells a story of the artisan's hands, carefully shaping and firing the clay, infusing each piece with intention and soul, inviting you to slow down and savor the simple pleasure of natural hydration.",
+    "story": "Inspired by clayey pottery, this piece is a new addition to my collection.",
+    "imageIds": [
+      "prod-img-1760163944685-585",
+      "prod-img-1760163944685-447",
+      "prod-img-1760163944686-22"
+    ]
   }
 ]

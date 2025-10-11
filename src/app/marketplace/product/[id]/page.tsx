@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { products, artisans } from '@/lib/data';
+import { artisans } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -15,17 +15,31 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { promises as fs } from 'fs';
+import path from 'path';
+import { ShoppingCart, Star } from 'lucide-react';
 
+async function getProduct(id: string) {
+  const productsPath = path.join(process.cwd(), 'src', 'lib', 'data', 'products.json');
+  try {
+    const productsData = await fs.readFile(productsPath, 'utf-8');
+    const products = JSON.parse(productsData);
+    return products.find((p: any) => p.id === id);
+  } catch (error) {
+    console.error("Could not read products data:", error);
+    return null;
+  }
+}
 
-export default function ProductPage({ params }: { params: { id: string } }) {
-  const product = products.find(p => p.id === params.id);
+export default async function ProductPage({ params }: { params: { id: string } }) {
+  const product = await getProduct(params.id);
 
   if (!product) {
     notFound();
   }
 
   const artisan = artisans.find(a => a.id === product.artisanId);
-  const images = product.imageIds.map(id => PlaceHolderImages.find(img => img.id === id)).filter(Boolean);
+  const images = product.imageIds.map((id: string) => PlaceHolderImages.find(img => img.id === id)).filter(Boolean);
   const artisanAvatar = artisan ? PlaceHolderImages.find(img => img.id === artisan.avatarImageId) : undefined;
 
   return (
@@ -34,7 +48,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         <div>
           <Carousel className="w-full">
             <CarouselContent>
-              {images.map((image, index) => image && (
+              {images.map((image: any, index: number) => image && (
                 <CarouselItem key={index}>
                   <div className="aspect-square relative overflow-hidden rounded-lg">
                     <Image

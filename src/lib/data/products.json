@@ -232,5 +232,21 @@
       "prod-img-1760163944685-447",
       "prod-img-1760163944686-22"
     ]
+  },
+  {
+    "id": "prod-1765703665225",
+    "name": "The Digital Weaver's Blueprint: Workflow Mastery Illuminated",
+    "artisanId": "art-1759988986381",
+    "categoryId": "new",
+    "price": 92,
+    "rating": 0,
+    "reviewCount": 0,
+    "description": "Behold, a meticulously rendered blueprint, not of wood or clay, but of pure conceptual clarity. This 'Architect's Code Canvas' unfolds the intricate dance of data and logic, presented with the elegant simplicity only true craftsmanship can achieve. Each node, each arrow, is thoughtfully placed, revealing the seamless flow from user interaction to profound machine intelligence, a testament to structured thought and refined engineering.Crafted with a passion for clarity and an artisan's dedication to simplifying complexity, this workflow diagram is more than just a chart; it is the distilled essence of a creator's journey to bring order to the digital realm. Inspired by the desire to empower innovators and illuminate the daunting world of machine learning applications, it serves as a guiding star for those building intelligent systems, embodying the artisan's commitment to function and the beauty found in elegant problem-solving.",
+    "story": "Inspired by coding-teaching, workflow, this piece is a new addition to my collection.",
+    "imageIds": [
+      "prod-img-1765703665221-8",
+      "prod-img-1765703665223-898",
+      "prod-img-1765703665225-757"
+    ]
   }
 ]
